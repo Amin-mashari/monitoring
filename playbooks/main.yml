@@ -1,0 +1,21 @@
+- name: installing grafana promethues alertmanager on master host
+  hosts: master
+  roles:
+    - { role: master }
+  tags:
+    - master
+
+- name: installing node-exporters on agents host
+  hosts: agents
+  roles:
+    - { role: agents }
+  tags:
+    - agents
+
+- name: config iptables for limit agents ports just for master
+  hosts: agents
+  roles:
+    - { role: iptables }
+  tags:
+    - agents
+    - iptables
